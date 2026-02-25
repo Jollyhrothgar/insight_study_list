@@ -21,32 +21,56 @@ Below is a unified, importance-ranked view across both.
 
 ### SQL
 Comes up in nearly every technical screen.
-* Window functions (`RANK()`, `LEAD()`, `LAG()`, `ROW_NUMBER()`)
-* CTEs / `WITH` clauses
-* Joins (inner, left, full outer) and aggregations (`GROUP BY`, `HAVING`)
-* Query readability: clean formatting, capitalized keywords
+* Window functions: `RANK()`, `DENSE_RANK()`, `ROW_NUMBER()`, `LEAD()`, `LAG()`, `NTILE()`, running totals with `SUM() OVER`
+  - These let you compute values across rows without collapsing them — e.g., "rank each user's purchases by date" or "compare each row to the previous one." This is the #1 topic in SQL screens.
+* CTEs / `WITH` clauses for readable, composable queries
+  - Named subqueries you define at the top, then reference like tables. They turn a nested mess into something you can read top-to-bottom.
+* Joins (inner, left, right, full outer, cross, self-join) and aggregations (`GROUP BY`, `HAVING`, `COUNT(DISTINCT ...)`)
+* Subqueries: correlated vs. uncorrelated, `EXISTS` vs. `IN`
+* `CASE WHEN` for conditional logic, `COALESCE` / `NULLIF` for null handling
+* Date/time manipulation: `DATE_TRUNC`, `EXTRACT`, `INTERVAL`, timezone awareness
+* Query readability and performance: clean formatting, indexing intuition, avoiding `SELECT *` in production
+* → [SQLBolt interactive tutorial](https://sqlbolt.com/) | [Mode SQL tutorial](https://mode.com/sql-tutorial)
 
 ### Statistics & Experimentation
 The core skill here is judgment: numbers come from distributions, and you need to understand the properties of the distribution you're reasoning about to make sound claims about confidence and comparison.
 * Distributional thinking: know what generated your data, what assumptions you're making, and when a summary statistic is (or isn't) enough
-* A/B testing end-to-end: hypothesis, sample size, power, test selection, interpretation
+  - Central limit theorem, law of large numbers, normal / log-normal / Poisson / binomial — know which applies to your data and why it matters for your choice of test or interval.
+* A/B testing end-to-end: hypothesis formulation, sample size calculation, statistical power, test selection, interpretation
+  - This is the full workflow: define a metric, decide how much lift you care about, calculate how many samples you need, run the experiment, interpret the result. Companies run hundreds of these.
 * Metric guardrailing: improving one metric without degrading others
+  - e.g., you optimize click-through rate but need to verify you haven't tanked revenue or increased support tickets. Multi-metric thinking is expected.
 * Confidence intervals, bootstrapping, and when parametric vs. non-parametric methods apply
   - You could use bootstrapping for nearly everything here — and that's fine unless data volume or latency says otherwise. The skill is knowing the tradeoffs.
+* Effect size, multiple comparisons (Bonferroni, FDR), and Simpson's paradox
+  - Statistical significance alone isn't enough — how big is the effect? And when you run many tests, some will be "significant" by chance. These are the gotchas interviewers probe.
+* → [Seeing Theory (visual intro to stats)](https://seeing-theory.brown.edu/) | [Khan Academy Statistics & Probability](https://www.khanacademy.org/math/statistics-probability)
 
 ### Classical ML (Tabular Data)
 Still the bread and butter for most business problems.
-* XGBoost / LightGBM - the default for structured data
+* XGBoost / LightGBM — the default for structured/tabular data
+  - Gradient-boosted decision trees. They win most Kaggle competitions on tabular data for a reason: fast, handle missing values, capture nonlinear relationships. Know how to tune `learning_rate`, `max_depth`, `n_estimators`, and when you're overfitting.
 * Linear & logistic regression — the math and the assumptions behind them
-* Model selection: cross-validation, bias-variance tradeoff
+  - Linear: continuous outcome, assumes linear relationship, interpretable coefficients. Logistic: binary outcome, outputs probabilities via sigmoid. Know what multicollinearity does, what regularization (L1/L2) is for, and when these simple models outperform complex ones.
+* Model selection: cross-validation, bias-variance tradeoff, train/validation/test splits
+  - Why you never evaluate on training data. K-fold cross-validation gives you a more honest estimate of generalization. Bias-variance tradeoff is the tension between underfitting (too simple) and overfitting (too complex).
 * Feature engineering and selection
+  - Encoding categoricals (one-hot, target encoding), handling missing values, creating interaction terms, log transforms for skewed features. Feature importance via permutation or SHAP values.
+* Evaluation metrics: accuracy, precision, recall, F1, AUC-ROC, log loss
+  - Which metric matters depends on the problem. Fraud detection with 0.1% fraud rate? Accuracy is useless — you need precision/recall. Know the confusion matrix cold.
+* → [Scikit-learn user guide](https://scikit-learn.org/stable/user_guide.html) | [StatQuest ML playlist (YouTube)](https://www.youtube.com/playlist?list=PLblh5JKOoLUICTaGLRoHQDuF_7q2GfuJF)
 
 ### Python Fundamentals
 Most screens involve live-coding in Python. R is also widely used in data science — especially in biotech, pharma, and statistics-heavy roles — so if your target industry leans R, invest there too. The concepts below apply in either language.
-* Data structures: lists, dicts, sets, and their complexities
+* Data structures: lists, dicts, sets, tuples, and their complexities
+  - Know when to reach for each. Dicts and sets are O(1) lookup (hash-based); lists are O(n) for search. Defaultdicts, Counter, namedtuple, and deque come up in coding screens.
 * Pandas / Polars for data manipulation
+  - groupby, merge, pivot, apply, vectorized operations vs. iterrows (don't). Polars is gaining traction for speed on larger datasets. Know how to chain operations and avoid SettingWithCopyWarning.
+* List comprehensions, generators, lambda functions, `map`/`filter`
+  - Concise, idiomatic Python. Generators are important when your data doesn't fit in memory — they yield one item at a time.
 * Writing clean, modular code
   - Notebooks are great for exploration, EDA, and sharing results. The anti-pattern is 800-line notebooks with no functions. When you find yourself copying the same cleaning code between notebooks, that's your signal to refactor it into a `.py` file you can import.
+* → [Python official tutorial](https://docs.python.org/3/tutorial/) | [Pandas getting started](https://pandas.pydata.org/docs/getting_started/intro_tutorials/)
 
 ---
 
