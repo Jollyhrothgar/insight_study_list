@@ -42,7 +42,7 @@ Still the bread and butter for most business problems.
 * Feature engineering and selection
 
 ### Python Fundamentals
-Most screens involve live-coding in Python.
+Most screens involve live-coding in Python. R is also widely used in data science — especially in biotech, pharma, and statistics-heavy roles — so if your target industry leans R, invest there too. The concepts below apply in either language.
 * Data structures: lists, dicts, sets, and their complexities
 * Pandas / Polars for data manipulation
 * Writing clean, modular code
