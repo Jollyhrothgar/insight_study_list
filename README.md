@@ -173,9 +173,7 @@ Asked more often than candidates expect.
 
 ## Interview Mindset
 
-> In 2015, the question was *"Can you derive the math?"*
->
-> In 2026, the question is *"Can you build a system that uses this math without costing us $1M in API credits?"*
+Interviews vary widely — some are deeply technical, some are conversational, some are case studies. The common thread is that interviewers want to see how you think through problems, not just whether you know the answer.
 
 **Preparation:**
 * Know your resume and projects cold. For each project, be ready to explain: the business problem, your approach, what you'd do differently, and the impact.
@@ -183,8 +181,8 @@ Asked more often than candidates expect.
 * Practice communicating technical work to non-technical audiences. "I built a gradient-boosted model" means nothing to a PM — "I built a model that predicts which users will churn next month, so we can intervene early" does.
 
 **During the interview:**
-* Write clean SQL and clean Python during screens — formatting and variable naming matter more than you think.
-* Think out loud. Interviewers are evaluating your reasoning process, not just the final answer. Say what you're considering, what tradeoffs you see, and why you're making each choice.
+* Break problems down and narrate as you go. When writing code live, show how you decompose a big problem into smaller pieces — write a helper function, explain what it does and why, then use it. The ability to structure your thinking in real time is what interviewers are evaluating.
+* Think out loud. Say what you're considering, what tradeoffs you see, and why you're making each choice. The reasoning matters more than the final answer.
 * It's OK to say "I don't know, but here's how I'd approach figuring it out." Intellectual honesty is valued over bluffing.
 * Ask clarifying questions. Ambiguous prompts are often intentional — demonstrating that you scope a problem before diving in is itself the skill being tested.
 
