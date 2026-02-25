@@ -1,6 +1,6 @@
-# PhD to Data Science Transition Study List
+# PhD to Data Science Study Guide
 
-Preparation materials for data science interviews, organized by **importance to interview success**.
+Study materials for PhDs transitioning into data science, organized by **importance to interview success**. This is a study guide — it tells you *what to learn*, ranked by how likely it is to come up in interviews. It is not an interview strategy guide or a career transition roadmap.
 
 This repo contains two era-specific study guides:
 * [**2016 Edition**](README_2016.md) - Classical data science (Insight Fellowship era)
@@ -14,6 +14,22 @@ Below is a unified, importance-ranked view across both.
 * **[!!!]** - Must know. You will be asked about this.
 * **[!!]** - Should know. Comes up frequently.
 * **[!]** - Nice to know. Differentiates strong candidates.
+
+---
+
+## The Interview Pipeline
+
+Understanding what you're preparing for:
+
+1. **Application:** Either a cold application or a referral. For a concrete starting point, find a data science job posting you're interested in and use it to identify your gaps against this guide.
+2. **Behavioral screen:** Are you someone others want to work with? Can you navigate conflict? Are you aligned with the company's values and genuinely excited about the role? *Behavioral prep is important but out of scope for this guide — it's its own skill set.*
+3. **Technical screens (1-2):** These test a skill you must be proficient in to do the job. If the role requires Python, expect to solve a problem in Python. If it requires SQL, expect a SQL screen.
+4. **Take-home challenge:** Fairly common. You work on an assessment independently over a longer period and submit it — think of it like a tightly scoped Kaggle challenge. You may then present your results to a panel that asks about your design choices.
+5. **On-site interviews (4-5 rounds, ~45 min each):** These test your skills across different areas. Expect some combination of: SQL problem, programming problem, business metric / system design problem, behavioral / interpersonal problem, and machine learning problem. Formats vary — case studies, live coding, whiteboarding, etc.
+6. **Negotiation:** The hiring manager expresses strong interest. You negotiate terms — salary, equity, vacation, start date. Don't skip this step.
+7. **Offer:** You sign a document accepting the terms.
+
+**A note on environment:** In live technical screens, you often won't have access to an IDE — it might be a Google Doc, CoderPad, or a whiteboard. No autocomplete, no keyboard shortcuts. Practice solving problems in a plain text environment so you're not thrown off when it happens.
 
 ---
 
@@ -91,16 +107,16 @@ Increasingly expected in 2026 interviews.
   - Prompting is fast and cheap to iterate. Fine-tuning is expensive but can improve quality for narrow tasks. Most production systems start with prompting and only fine-tune when they hit a ceiling. → [Google ML Crash Course: LLM tuning](https://developers.google.com/machine-learning/crash-course/llm/tuning)
 
 ### Software Engineering
-Complements your research skills and is very learnable. Most of this is pattern recognition, not new theory.
+Complements your research skills and is very learnable. Most of this is pattern recognition, not new theory. Some of these are tested in interviews; others are day-to-day skills you'll pick up on the job. Both are listed here because understanding them helps you talk credibly about how you work.
 * Production code: type hints, testing, clean structure
   - Type hints: e.g., `def predict(features: pd.DataFrame) -> np.ndarray:` — tells your editor and teammates what goes in and comes out. Your IDE will catch bugs before you run anything. → [Python typing docs](https://docs.python.org/3/library/typing.html)
   - Testing: you write `assert clean_text("  HELLO ") == "hello"` in a test file, run `pytest`, and it tells you if anything broke. This is how teams catch bugs before they ship. → [pytest getting started](https://docs.pytest.org/en/stable/getting-started.html)
 * APIs: FastAPI basics — serve a model behind an endpoint
   - You decorate a function with `@app.post("/predict")`, and now your model is a URL that any app can send data to and get predictions back. This is how models get used in the real world. → [FastAPI tutorial](https://fastapi.tiangolo.com/tutorial/)
-* Docker: package your work so it runs anywhere
-  - Useful to understand conceptually, but rarely tested in interviews — you'll learn this on the job. → [Docker for Data Science](https://www.datacamp.com/tutorial/docker-for-data-science-introduction)
-* Git: branches, PRs, not just add/commit/push
-  - In a team, you don't push directly to `main`. You create a branch, make changes, open a Pull Request, teammates review your code, then it gets merged. This is how every company works. → [GitHub flow](https://docs.github.com/en/get-started/using-github/github-flow)
+* Docker: package your work so it runs anywhere *(day-to-day skill — rarely tested in interviews)*
+  - Useful to understand conceptually. You'll learn the details on the job. → [Docker for Data Science](https://www.datacamp.com/tutorial/docker-for-data-science-introduction)
+* Git: branches, PRs, not just add/commit/push *(day-to-day skill — expected but rarely tested directly)*
+  - In a team, you don't push directly to `main`. You create a branch, make changes, open a Pull Request, teammates review your code, then it gets merged. → [GitHub flow](https://docs.github.com/en/get-started/using-github/github-flow)
 
 ### Algorithms & Data Structures
 Less weight than 2016, but still appears in technical screens.
@@ -136,7 +152,7 @@ The skill of translating a vague business question into a concrete data science 
 ## Tier 3: Nice to Know [!]
 
 ### MLOps & Deployment
-Differentiates "I can build a model" from "I can ship a model."
+These are mostly day-to-day skills rather than interview topics. Knowing they exist and being able to discuss them shows maturity, but you'll learn the tools on the job.
 * Experiment tracking: MLflow or Weights & Biases
   - Think of it as a lab notebook for ML. Every time you train a model, it logs the hyperparameters, metrics, and artifacts so you can compare 50 runs and reproduce the best one. → [MLflow quickstart](https://mlflow.org/docs/latest/getting-started/intro-quickstart/)
 * Pipeline orchestration: Airflow or Dagster
