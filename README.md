@@ -1,4 +1,4 @@
-# Insight Study List
+# PhD to Data Science Transition Study List
 
 Preparation materials for data science interviews, organized by **importance to interview success**.
 
