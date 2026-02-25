@@ -44,7 +44,8 @@ Still the bread and butter for most business problems.
 You will live-code in Python. Fluency is assumed.
 * Data structures: lists, dicts, sets, and their complexities
 * Pandas / Polars for data manipulation
-* Writing clean, modular code (not notebook spaghetti)
+* Writing clean, modular code
+  - Notebooks are great for exploration, EDA, and sharing results. The anti-pattern is 800-line notebooks with no functions. When you find yourself copying the same cleaning code between notebooks, that's your signal to refactor it into a `.py` file you can import.
 
 ---
 
@@ -53,21 +54,30 @@ You will live-code in Python. Fluency is assumed.
 ### Generative AI & LLMs
 The new baseline expectation for 2026 candidates.
 * Transformer intuition: what they are, why they fail, how context windows work
+  - The architecture behind GPT, Claude, and Gemini. Read one good visual explainer and the "magic" becomes concrete. → [The Illustrated Transformer (Jay Alammar)](https://jalammar.github.io/illustrated-transformer/)
 * RAG: connecting a vector DB to an LLM (the "Hello World" of applied AI)
+  - Your LLM doesn't know your company's internal docs. RAG = search a database for relevant chunks, paste them into the prompt, get grounded answers. It's the most common LLM application pattern in industry. → [RAG from scratch tutorial](https://learnbybuilding.ai/tutorial/rag-from-scratch/)
 * Prompt engineering: system prompts, few-shot, structured outputs
+  - "System prompt" = persistent instructions (e.g., "You are a medical assistant"). "Few-shot" = giving 2-3 examples in the prompt so the model follows the pattern. "Structured output" = asking the model to respond in JSON. → [Prompt Engineering Guide](https://www.promptingguide.ai/)
 * Evaluation: golden datasets, semantic similarity, exact match
 * Fine-tuning vs. prompting: when to use each, cost tradeoffs
 
 ### Software Engineering
-The biggest gap for PhD candidates. Companies care about this more than you think.
-* Production code: modules > notebooks, type hints, pytest
-* APIs: FastAPI basics - serve a model behind an endpoint
+Complements your research skills and is very learnable. Most of this is pattern recognition, not new theory.
+* Production code: type hints, testing, clean structure
+  - Type hints: e.g., `def predict(features: pd.DataFrame) -> np.ndarray:` — tells your editor and teammates what goes in and comes out. Your IDE will catch bugs before you run anything. → [Python typing docs](https://docs.python.org/3/library/typing.html)
+  - Testing: you write `assert clean_text("  HELLO ") == "hello"` in a test file, run `pytest`, and it tells you if anything broke. This is how teams catch bugs before they ship. → [pytest getting started](https://docs.pytest.org/en/stable/getting-started.html)
+* APIs: FastAPI basics — serve a model behind an endpoint
+  - You decorate a function with `@app.post("/predict")`, and now your model is a URL that any app can send data to and get predictions back. This is how models get used in the real world. → [FastAPI tutorial](https://fastapi.tiangolo.com/tutorial/)
 * Docker: package your work so it runs anywhere
+  - Useful to understand conceptually, but rarely tested in interviews — you'll learn this on the job. → [Docker for Data Science](https://www.datacamp.com/tutorial/docker-for-data-science-introduction)
 * Git: branches, PRs, not just add/commit/push
+  - In a team, you don't push directly to `main`. You create a branch, make changes, open a Pull Request, teammates review your code, then it gets merged. This is how every company works. → [GitHub flow](https://docs.github.com/en/get-started/using-github/github-flow)
 
 ### Algorithms & Data Structures
 Less weight than 2016, but still appears in technical screens.
 * Big-O notation and common complexities
+  - How fast does your code get when the data gets 100x bigger? Looking up a value in a list is O(n) — you check every item. In a dict it's O(1) — instant. Interviewers want to hear you reason about scale.
 * Sorting: know merge sort and quicksort cold
 * Search: binary search, BFS, DFS
 * Dynamic programming basics (memoization, common patterns)
@@ -78,6 +88,14 @@ Comes up in product-sense and ML questions alike.
 * Common puzzles: disease testing, Monty Hall
 * Probability distributions and when to apply them
 
+### Product Sense & Business Analytics
+The skill of translating a vague business question into a concrete data science problem. Heavily tested at product-focused companies.
+* Problem framing: metric definition, segmentation, experiment design
+  - A PM says "engagement is down." You ask: down for whom? Measured how? Compared to what baseline? This framing skill *is* the interview.
+  - Practice taking vague business problems and defining: the metric, the segmentation, the model/experiment, and what you'd recommend if results are ambiguous.
+* Funnel analysis, cohort analysis, churn, LTV
+* Correlation vs. causation in business context
+
 ---
 
 ## Tier 3: Nice to Know [!]
@@ -85,7 +103,9 @@ Comes up in product-sense and ML questions alike.
 ### MLOps & Deployment
 Differentiates "I can build a model" from "I can ship a model."
 * Experiment tracking: MLflow or Weights & Biases
+  - Think of it as a lab notebook for ML. Every time you train a model, it logs the hyperparameters, metrics, and artifacts so you can compare 50 runs and reproduce the best one. → [MLflow quickstart](https://mlflow.org/docs/latest/getting-started/intro-quickstart/)
 * Pipeline orchestration: Airflow or Dagster
+  - "Every morning at 6am: pull new data → retrain model → run tests → deploy if metrics improve." That workflow, automated and monitored, is a pipeline. → [Dagster getting started](https://docs.dagster.io/getting-started)
 * Cloud ML: SageMaker / Vertex AI / Bedrock (pick one, know concepts)
 
 ### System Design for ML
@@ -94,16 +114,12 @@ Increasingly common in senior-level loops.
 * "Design a RAG pipeline"
 * Cost / latency / quality tradeoffs
 
-### Product & Business Analytics
-Critical for product data scientist roles.
-* Funnel analysis, cohort analysis, churn, LTV
-* Correlation vs. causation in business context
-* "What conclusions can you draw from this graph?"
-
 ### Modern Data Formats & Tools
 Shows you're current.
 * Parquet vs. CSV, JSONL for LLM datasets
+  - Parquet is a columnar, compressed format. A 2GB CSV might become ~200MB Parquet and load 10x faster in pandas. If you're still using CSV for anything over 100MB, switch. → [Apache Parquet overview](https://parquet.apache.org/docs/overview/)
 * DuckDB for local analytics
+  - Run SQL directly on local files with zero setup: `SELECT * FROM 'data.parquet' WHERE revenue > 1000`. No database server needed. → [DuckDB tutorial (MotherDuck)](https://motherduck.com/blog/duckdb-tutorial-for-beginners/)
 * LangChain / LlamaIndex for LLM orchestration
 
 ### Responsible AI & Ethics
