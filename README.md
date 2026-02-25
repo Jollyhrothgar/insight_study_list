@@ -20,28 +20,29 @@ Below is a unified, importance-ranked view across both.
 ## Tier 1: Must Know [!!!]
 
 ### SQL
-The single most universal technical screen. Every role, every company.
+Comes up in nearly every technical screen.
 * Window functions (`RANK()`, `LEAD()`, `LAG()`, `ROW_NUMBER()`)
 * CTEs / `WITH` clauses
 * Joins (inner, left, full outer) and aggregations (`GROUP BY`, `HAVING`)
 * Query readability: clean formatting, capitalized keywords
 
 ### Statistics & Experimentation
-The "science" in data science. Weak stats = instant rejection.
-* A/B testing end-to-end: hypothesis, sample size, power, T-test, interpretation
+The core skill here is judgment: numbers come from distributions, and you need to understand the properties of the distribution you're reasoning about to make sound claims about confidence and comparison.
+* Distributional thinking: know what generated your data, what assumptions you're making, and when a summary statistic is (or isn't) enough
+* A/B testing end-to-end: hypothesis, sample size, power, test selection, interpretation
 * Metric guardrailing: improving one metric without degrading others
-* p-values, confidence intervals, Type I/II errors
-* When to use mean vs. median, normal vs. non-normal assumptions
+* Confidence intervals, bootstrapping, and when parametric vs. non-parametric methods apply
+  - You could use bootstrapping for nearly everything here — and that's fine unless data volume or latency says otherwise. The skill is knowing the tradeoffs.
 
 ### Classical ML (Tabular Data)
 Still the bread and butter for most business problems.
 * XGBoost / LightGBM - the default for structured data
-* Linear & logistic regression (know the math, know the assumptions)
+* Linear & logistic regression — the math and the assumptions behind them
 * Model selection: cross-validation, bias-variance tradeoff
 * Feature engineering and selection
 
 ### Python Fundamentals
-You will live-code in Python. Fluency is assumed.
+Most screens involve live-coding in Python.
 * Data structures: lists, dicts, sets, and their complexities
 * Pandas / Polars for data manipulation
 * Writing clean, modular code
@@ -52,7 +53,7 @@ You will live-code in Python. Fluency is assumed.
 ## Tier 2: Should Know [!!]
 
 ### Generative AI & LLMs
-The new baseline expectation for 2026 candidates.
+Increasingly expected in 2026 interviews.
 * Transformer intuition: what they are, why they fail, how context windows work
   - The architecture behind GPT, Claude, and Gemini. Read one good visual explainer and the "magic" becomes concrete. → [The Illustrated Transformer (Jay Alammar)](https://jalammar.github.io/illustrated-transformer/)
 * RAG: connecting a vector DB to an LLM (the "Hello World" of applied AI)
